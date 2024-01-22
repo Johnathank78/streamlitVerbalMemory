@@ -16,7 +16,7 @@ computedStyle = """
                     border: none !important;
                 }
                 
-                div.block-container{
+                div.block-container {
                     transform: translateY(10vh);
                 ]
                         
