@@ -17,7 +17,7 @@ computedStyle = """
                 }
                 
                 div.block-container {
-                    transform: translateY(10vh);
+                    transform: translateY(50%);
                 ]
                         
                 .stButton>button, 
