@@ -15,7 +15,9 @@ computedStyle = """
                     border: none !important;
                 }
                 
-                
+                div.block-container{
+                    transform: translateY(10vh);
+                ]
                         
                 .stButton>button, 
                 .stButton>button:hover, 
