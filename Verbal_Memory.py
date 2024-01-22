@@ -6,7 +6,8 @@ from collections import Counter
 import csv
 from datetime import datetime
 
-#st.cache_data.clear()
+st.cache_data.clear()
+
 computedStyle = """
             <style>
                 div.block-container, div.block-container *, 
