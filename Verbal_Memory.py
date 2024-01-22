@@ -6,8 +6,7 @@ from collections import Counter
 import csv
 from datetime import datetime
 
-st.cache_data.clear()
-
+#st.cache_data.clear()
 computedStyle = """
             <style>
                 div.block-container, div.block-container *, 
@@ -15,11 +14,11 @@ computedStyle = """
                 .stButton {
                     border: none !important;
                 }
-                
-                div.block-container {
+
+                div.block-container{
                     transform: translateY(50%);
-                ]
-                        
+                }
+
                 .stButton>button, 
                 .stButton>button:hover, 
                 .stButton>button:focus {
