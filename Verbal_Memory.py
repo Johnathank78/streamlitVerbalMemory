@@ -15,10 +15,6 @@ computedStyle = """
                     border: none !important;
                 }
 
-                div.block-container{
-                    transform: translateY(8vh);
-                }
-
                 .stButton>button, 
                 .stButton>button:hover, 
                 .stButton>button:focus {
