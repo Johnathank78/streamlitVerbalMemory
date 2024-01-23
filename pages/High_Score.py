@@ -1,8 +1,13 @@
 import csv
 import pandas
 import streamlit as st
+from sqlalchemy import create_engine, text
 
-highScore = pandas.read_csv('highScore.csv', delimiter=",")
+engine = create_engine("sqlite:///highScores.db")
+conn = engine.connect()
+
+highScore = conn.execute("SELECT * FROM highScores").fetchone()
+conn.commit()
 
 with st.container():
     x1, x2, x3 = st.columns([1,2,1])
