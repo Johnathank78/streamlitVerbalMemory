@@ -2,8 +2,8 @@ import streamlit as st
 import traceback
 import pandas
 import random
+from sqlalchemy import create_engine, text
 from collections import Counter
-import csv
 from datetime import datetime
 
 #st.cache_data.clear()
@@ -2056,6 +2056,21 @@ scattered
 strong
 tank""".split('\n')
 
+# Create the SQL connection to pets_db as specified in your secrets file
+engine = create_engine("sqlite:///highScores.db")
+conn = engine.connect()
+
+# Insert some data with conn.session.
+with conn as s:
+    s.execute(text('''
+        CREATE TABLE IF NOT EXISTS highScores (
+            Date TEXT, 
+            Name TEXT PRIMARY KEY, 
+            Score INTT
+        );
+    '''))
+    s.commit()
+
 def pick_weighted_random_word(all_words, picked_words):
     # Define the higher weight for picked words
     higher_weight = 35
@@ -2093,7 +2108,6 @@ if 'actualWord' not in st.session_state:
 
 
 def gameOver():
-    highScore = pandas.read_csv('highScore.csv', delimiter=",")
 
     with st.container():
         x1, x2, x3 = st.columns([1,2,1])
@@ -2103,17 +2117,17 @@ def gameOver():
                 name = st.text_input("Name")
                 if st.button("Save Score"):
                     today = datetime.now().strftime("%m/%d/%Y")
-                    new_row = pandas.Series({
-                        'Date': today,
-                        'Name': name,
-                        'Score': int(st.session_state.score)
-                    })
-
-                    new_row_df = pandas.DataFrame([new_row], columns=highScore.columns)
-
-                    highScore = pandas.concat([highScore, new_row_df], ignore_index=True)
-                    highScore.to_csv('highScore.csv', index=False)
-
+                    with conn as s:
+                        s.execute(text('''
+                                INSERT INTO highScores (Date, Name, Score) 
+                                VALUES (:Date, :Name, :Score);
+                            '''), {
+                                'Date': today,
+                                'Name': name, 
+                                'Score': int(st.session_state.score)
+                            })
+                        s.commit()
+                            
                     st.session_state.gameOver = False
                     st.session_state.lives = 3
                     st.session_state.score = 0
