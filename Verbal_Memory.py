@@ -2077,7 +2077,7 @@ conn.commit()
 
 def pick_weighted_random_word(all_words, picked_words):
     # Define the higher weight for picked words
-    higher_weight = 35
+    higher_weight = 45
     
     # Create a dictionary for word weights
     word_weights = {word: 1 for word in all_words}
