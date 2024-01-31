@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, text
 from collections import Counter
 from datetime import datetime
 import uuid
+import re
 
 #st.cache_data.clear()
 computedStyle = """
@@ -57,2005 +58,2005 @@ computedStyle = """
         """
 
 wordList = """dramatic
-    acid
-    elite
-    yoke
-    truculent
-    mute
-    husky
-    interesting
-    stem
-    detail
-    screw
-    rhythm
-    mug
-    wonder
-    believe
-    watch
-    religion
-    potato
-    crash
-    show
-    third
-    zip
-    fax
-    shrug
-    puffy
-    sun
-    event
-    camera
-    tap
-    woebegone
-    abject
-    limit
-    rings
-    feeling
-    unused
-    visit
-    canvas
-    dangerous
-    spurious
-    year
-    nonchalant
-    momentous
-    payment
-    subtract
-    useful
-    thread
-    divergent
-    obeisant
-    whip
-    ill
-    tax
-    pleasure
-    match
-    longing
-    incandescent
-    unwieldy
-    hair
-    clean
-    tedious
-    pull
-    brake
-    painstaking
-    grab
-    end
-    learned
-    apparel
-    thaw
-    unbiased
-    communicate
-    form
-    aback
-    secretary
-    reign
-    wrist
-    want
-    deserted
-    wax
-    used
-    exclusive
-    nonstop
-    charge
-    foolish
-    zealous
-    ruthless
-    decorous
-    birth
-    equable
-    present
-    babies
-    blushing
-    spring
-    imminent
-    label
-    magical
-    bow
-    muscle
-    steadfast
-    rejoice
-    complain
-    object
-    helpful
-    milky
-    girl
-    miss
-    dog
-    loose
-    pretty
-    grate
-    pan
-    hot
-    yell
-    tumble
-    exciting
-    medical
-    swing
-    ruin
-    invention
-    grey
-    boy
-    craven
-    meeting
-    hurried
-    prose
-    swift
-    team
-    kindhearted
-    vast
-    flower
-    adjoining
-    request
-    pie
-    zephyr
-    abnormal
-    territory
-    judicious
-    raspy
-    damp
-    pigs
-    moon
-    abaft
-    silent
-    telling
-    godly
-    books
-    nail
-    abusive
-    murder
-    children
-    multiply
-    produce
-    run
-    rabbits
-    nerve
-    teeny-tiny
-    love
-    sleep
-    fluttering
-    fit
-    magic
-    mindless
-    base
-    obtain
-    discovery
-    embarrass
-    ratty
-    sweater
-    luxuriant
-    testy
-    glib
-    hat
-    jittery
-    cagey
-    questionable
-    oceanic
-    highfalutin
-    bikes
-    lick
-    count
-    thought
-    magenta
-    blind
-    debt
-    veil
-    statement
-    jeans
-    colorful
-    four
-    worthless
-    daughter
-    salty
-    whirl
-    friend
-    permissible
-    rail
-    impulse
-    jelly
-    gruesome
-    fat
-    encourage
-    trace
-    blush
-    rainy
-    club
-    inconclusive
-    answer
-    teaching
-    telephone
-    camp
-    lettuce
-    way
-    curly
-    suggest
-    bed
-    boat
-    waiting
-    tooth
-    cakes
-    one
-    parsimonious
-    mom
-    direction
-    scared
-    party
-    stamp
-    sweltering
-    tow
-    daffy
-    hospital
-    spotty
-    relation
-    silky
-    young
-    governor
-    roasted
-    anxious
-    white
-    radiate
-    rinse
-    well-to-do
-    army
-    two
-    righteous
-    abounding
-    volatile
-    wonderful
-    wrap
-    paint
-    moldy
-    include
-    large
-    bulb
-    trousers
-    meal
-    geese
-    adjustment
-    cow
-    spiteful
-    drum
-    stretch
-    memory
-    strange
-    amused
-    violet
-    lunch
-    extra-small
-    muddle
-    outrageous
-    glorious
-    supply
-    buzz
-    instinctive
-    weak
-    bump
-    chess
-    sassy
-    refuse
-    paste
-    drain
-    domineering
-    cub
-    cap
-    rot
-    flight
-    amusement
-    unsightly
-    unbecoming
-    adventurous
-    treatment
-    jog
-    greasy
-    shivering
-    cloistered
-    whispering
-    dispensable
-    sparkle
-    eye
-    lumber
-    voracious
-    pink
-    kind
-    nutty
-    noisy
-    materialistic
-    humdrum
-    glamorous
-    face
-    wooden
-    cloudy
-    edge
-    encouraging
-    noise
-    knowledgeable
-    sense
-    note
-    hypnotic
-    blade
-    tin
-    channel
-    trust
-    birds
-    ambiguous
-    curtain
-    toothbrush
-    turkey
-    hug
-    plucky
-    modern
-    yard
-    dinner
-    arrive
-    suit
-    disillusioned
-    bottle
-    dark
-    pig
-    claim
-    absurd
-    food
-    responsible
-    staking
-    yarn
-    wool
-    twig
-    political
-    listen
-    disastrous
-    decisive
-    elfin
-    hop
-    spare
-    royal
-    irate
-    tricky
-    grumpy
-    puzzling
-    unarmed
-    obedient
-    nut
-    tickle
-    suspend
-    shrill
-    friction
-    settle
-    chalk
-    frightened
-    old-fashioned
-    unequaled
-    cat
-    baseball
-    ancient
-    flagrant
-    pocket
-    tiny
-    industry
-    boring
-    wry
-    wood
-    elbow
-    rescue
-    protective
-    bubble
-    messy
-    writing
-    difficult
-    womanly
-    scrub
-    challenge
-    obsequious
-    remind
-    behave
-    delirious
-    bang
-    wire
-    lacking
-    spark
-    language
-    driving
-    wind
-    depressed
-    puzzled
-    squeak
-    plough
-    callous
-    right
-    grubby
-    quirky
-    sticky
-    respect
-    threatening
-    afford
-    succeed
-    feeble
-    flame
-    rhetorical
-    roof
-    thrill
-    class
-    front
-    obscene
-    transport
-    frail
-    exuberant
-    plate
-    bucket
-    intend
-    alive
-    flowery
-    remove
-    hushed
-    divide
-    dogs
-    floor
-    light
-    ten
-    tenuous
-    oval
-    color
-    carriage
-    uncle
-    redundant
-    adamant
-    gusty
-    shocking
-    basket
-    amuse
-    bashful
-    amuck
-    injure
-    standing
-    fair
-    balance
-    spill
-    rotten
-    silly
-    tie
-    finger
-    agree
-    cuddly
-    part
-    attack
-    drab
-    rainstorm
-    mellow
-    trot
-    irritate
-    disappear
-    grape
-    greedy
-    move
-    stroke
-    unequal
-    dream
-    relax
-    astonishing
-    sheep
-    cemetery
-    ants
-    square
-    offbeat
-    rub
-    caring
-    fast
-    tiger
-    boorish
-    hard
-    obese
-    distribution
-    carry
-    smash
-    ugliest
-    snore
-    glossy
-    hum
-    stiff
-    worm
-    soap
-    weather
-    numerous
-    mixed
-    talk
-    great
-    offer
-    early
-    accidental
-    coil
-    knot
-    abandoned
-    try
-    general
-    mask
-    paddle
-    earthquake
-    avoid
-    sneaky
-    impossible
-    robust
-    salt
-    letters
-    labored
-    pack
-    stereotyped
-    competition
-    x-ray
-    branch
-    reduce
-    strip
-    fretful
-    bumpy
-    stimulating
-    brush
-    aloof
-    hideous
-    cobweb
-    well-off
-    adaptable
-    delicious
-    experience
-    open
-    mass
-    grandmother
-    wide
-    verdant
-    income
-    ignore
-    tease
-    elated
-    tender
-    jail
-    division
-    cross
-    sprout
-    preach
-    green
-    mess up
-    engine
-    steep
-    thirsty
-    sticks
-    drink
-    bead
-    confused
-    garrulous
-    behavior
-    sour
-    suggestion
-    nutritious
-    neighborly
-    road
-    night
-    error
-    lean
-    trouble
-    price
-    riddle
-    humor
-    group
-    tidy
-    excellent
-    sick
-    expand
-    library
-    coast
-    separate
-    raise
-    clover
-    happy
-    recognise
-    ray
-    appear
-    rush
-    squeamish
-    cheer
-    frantic
-    scandalous
-    serve
-    deep
-    serious
-    middle
-    dinosaurs
-    building
-    dull
-    chickens
-    sign
-    periodic
-    eager
-    dysfunctional
-    bleach
-    mighty
-    malicious
-    curl
-    profit
-    moaning
-    aware
-    found
-    range
-    tawdry
-    ski
-    unit
-    release
-    meek
-    blue
-    exotic
-    paltry
-    oven
-    vivacious
-    tomatoes
-    trashy
-    program
-    letter
-    increase
-    lip
-    donkey
-    concentrate
-    enthusiastic
-    brother
-    measure
-    straight
-    even
-    well-groomed
-    desire
-    furry
-    develop
-    hapless
-    draconian
-    men
-    pray
-    available
-    current
-    perfect
-    smart
-    spotless
-    wild
-    mix
-    courageous
-    spoon
-    regret
-    terrific
-    reflective
-    bell
-    gainful
-    follow
-    clammy
-    peck
-    crib
-    tick
-    fade
-    toys
-    colour
-    pour
-    voice
-    awesome
-    temporary
-    bent
-    kick
-    new
-    successful
-    striped
-    impolite
-    fairies
-    psychotic
-    natural
-    enormous
-    rose
-    structure
-    report
-    maddening
-    flat
-    mark
-    sedate
-    sigh
-    aquatic
-    fish
-    dirty
-    dry
-    shop
-    bless
-    sip
-    look
-    naughty
-    reply
-    spicy
-    dime
-    pastoral
-    awake
-    kaput
-    snail
-    license
-    mean
-    back
-    finicky
-    doubtful
-    mend
-    agonizing
-    tart
-    adorable
-    side
-    deeply
-    axiomatic
-    racial
-    rod
-    gaping
-    placid
-    loaf
-    science
-    stick
-    gaudy
-    rabid
-    tight
-    shock
-    slap
-    prickly
-    unruly
-    stale
-    plant
-    melt
-    scorch
-    harm
-    cooperative
-    mist
-    squeeze
-    wait
-    poke
-    thing
-    squirrel
-    dance
-    hospitable
-    brass
-    heal
-    cough
-    poised
-    handle
-    chivalrous
-    type
-    recondite
-    carve
-    calculate
-    scream
-    hate
-    volleyball
-    hanging
-    chemical
-    unkempt
-    changeable
-    bloody
-    page
-    amount
-    ice
-    possess
-    earsplitting
-    overwrought
-    promise
-    cycle
-    island
-    minute
-    abhorrent
-    soak
-    sniff
-    hammer
-    stay
-    statuesque
-    cheerful
-    murky
-    scarecrow
-    possible
-    lively
-    bells
-    advice
-    continue
-    growth
-    house
-    room
-    bored
-    hose
-    harmony
-    horses
-    boast
-    functional
-    tendency
-    parched
-    throat
-    overflow
-    internal
-    act
-    plug
-    bizarre
-    pancake
-    handsomely
-    cooing
-    wrong
-    yak
-    sugar
-    penitent
-    concerned
-    summer
-    icky
-    future
-    sore
-    gray
-    laughable
-    kitty
-    beautiful
-    dam
-    occur
-    fancy
-    egg
-    voyage
-    illegal
-    round
-    lucky
-    marry
-    caption
-    man
-    tasteful
-    excuse
-    flippant
-    station
-    introduce
-    afraid
-    invite
-    disturbed
-    volcano
-    polite
-    cactus
-    mature
-    shiver
-    chance
-    rhyme
-    tire
-    dirt
-    admit
-    lovely
-    knotty
-    fool
-    whole
-    help
-    value
-    fierce
-    gate
-    addition
-    minister
-    shy
-    credit
-    system
-    key
-    wreck
-    obsolete
-    marble
-    ocean
-    pear
-    tramp
-    wing
-    describe
-    north
-    hour
-    expensive
-    scribble
-    bathe
-    tip
-    witty
-    lamentable
-    far
-    overt
-    cure
-    ready
-    stitch
-    sudden
-    cows
-    morning
-    complex
-    wash
-    ad hoc
-    reading
-    bird
-    invent
-    honorable
-    rob
-    recess
-    chop
-    pin
-    cultured
-    worried
-    five
-    famous
-    lowly
-    quizzical
-    ludicrous
-    muddled
-    shoes
-    victorious
-    cause
-    nimble
-    fluffy
-    sophisticated
-    poison
-    next
-    loutish
-    switch
-    gigantic
-    gabby
-    lock
-    grateful
-    yummy
-    debonair
-    glistening
-    stir
-    dock
-    fence
-    tacky
-    inform
-    repeat
-    venomous
-    punish
-    receive
-    immense
-    stuff
-    aberrant
-    disgusting
-    ugly
-    pause
-    quilt
-    soggy
-    important
-    hole
-    fresh
-    vein
-    line
-    like
-    imported
-    wanting
-    pizzas
-    woman
-    narrow
-    soft
-    cellar
-    shirt
-    position
-    spiders
-    day
-    makeshift
-    crabby
-    symptomatic
-    defective
-    play
-    belong
-    squash
-    punch
-    actually
-    decide
-    sponge
-    untidy
-    teeth
-    glove
-    thin
-    crowded
-    pass
-    acoustic
-    story
-    carpenter
-    past
-    ubiquitous
-    scrape
-    fork
-    popcorn
-    chubby
-    itch
-    lunchroom
-    jam
-    utopian
-    purring
-    corn
-    slope
-    support
-    shaggy
-    cheat
-    impartial
-    pumped
-    tremble
-    approve
-    skin
-    familiar
-    upset
-    allow
-    stormy
-    few
-    reward
-    conscious
-    gaze
-    route
-    melodic
-    stare
-    huge
-    weary
-    wander
-    efficient
-    crack
-    hand
-    arithmetic
-    ill-informed
-    lake
-    infamous
-    festive
-    planes
-    jolly
-    provide
-    workable
-    travel
-    flock
-    brown
-    sloppy
-    hydrant
-    bustling
-    perpetual
-    arrest
-    post
-    snotty
-    earn
-    ritzy
-    rifle
-    macabre
-    puncture
-    frame
-    spade
-    tired
-    pickle
-    authority
-    uptight
-    second-hand
-    winter
-    juvenile
-    hungry
-    imagine
-    jumpy
-    versed
-    hissing
-    miscreant
-    belligerent
-    dare
-    number
-    purple
-    inexpensive
-    rural
-    careless
-    cracker
-    suck
-    last
-    clip
-    lazy
-    prepare
-    treat
-    faint
-    duck
-    toothpaste
-    elastic
-    married
-    cushion
-    impress
-    vacuous
-    capricious
-    birthday
-    dust
-    mice
-    wandering
-    airplane
-    warlike
-    sidewalk
-    lighten
-    degree
-    flaky
-    daily
-    agreeable
-    special
-    matter
-    join
-    easy
-    flawless
-    pet
-    sheet
-    alert
-    record
-    unpack
-    discreet
-    celery
-    save
-    eight
-    vulgar
-    ask
-    careful
-    giddy
-    rare
-    kiss
-    defeated
-    detailed
-    grin
-    acceptable
-    escape
-    flow
-    seal
-    damage
-    frog
-    flap
-    endurable
-    certain
-    texture
-    example
-    question
-    historical
-    guiltless
-    fragile
-    faded
-    crush
-    sulky
-    secret
-    long-term
-    rule
-    bear
-    slim
-    kneel
-    cannon
-    merciful
-    delay
-    elderly
-    parallel
-    private
-    curved
-    amazing
-    war
-    linen
-    protect
-    wink
-    stomach
-    proud
-    attach
-    shade
-    whine
-    rough
-    spot
-    thank
-    remember
-    anger
-    river
-    devilish
-    breakable
-    burn
-    snobbish
-    guide
-    moor
-    van
-    fall
-    marked
-    touch
-    nosy
-    pushy
-    wicked
-    sin
-    ball
-    rate
-    able
-    disapprove
-    contain
-    understood
-    test
-    giant
-    voiceless
-    fang
-    knife
-    selfish
-    pies
-    broad
-    spiffy
-    society
-    peaceful
-    comparison
-    thumb
-    worry
-    fly
-    remarkable
-    slip
-    reflect
-    notebook
-    scent
-    swanky
-    entertain
-    own
-    time
-    development
-    extend
-    ground
-    field
-    downtown
-    knock
-    partner
-    nasty
-    obnoxious
-    compete
-    demonic
-    consider
-    useless
-    hollow
-    elegant
-    memorize
-    oil
-    creature
-    subsequent
-    public
-    satisfying
-    mind
-    organic
-    quiver
-    tree
-    precious
-    gold
-    miniature
-    rat
-    strap
-    design
-    alcoholic
-    thoughtful
-    fact
-    bore
-    mere
-    advertisement
-    youthful
-    unadvised
-    surprise
-    brash
-    itchy
-    harbor
-    homeless
-    sea
-    examine
-    education
-    near
-    vengeful
-    brick
-    offend
-    dead
-    land
-    film
-    blow
-    effect
-    squeal
-    confess
-    chew
-    deceive
-    resonant
-    silver
-    berserk
-    shiny
-    mushy
-    tasteless
-    notice
-    cent
-    thoughtless
-    exchange
-    somber
-    sharp
-    snakes
-    exist
-    onerous
-    annoyed
-    real
-    hunt
-    embarrassed
-    cable
-    terrify
-    print
-    handsome
-    juice
-    wise
-    insect
-    lyrical
-    suffer
-    cherries
-    waves
-    unique
-    alarm
-    toad
-    basketball
-    mitten
-    handy
-    shelter
-    board
-    educate
-    theory
-    circle
-    frightening
-    tremendous
-    history
-    melted
-    curious
-    motionless
-    kettle
-    insidious
-    erect
-    yellow
-    beds
-    cheap
-    quartz
-    can
-    uppity
-    wipe
-    baby
-    root
-    market
-    scale
-    sleepy
-    lewd
-    wiggly
-    average
-    crazy
-    eggs
-    heavy
-    inject
-    powder
-    wave
-    dynamic
-    box
-    window
-    damaging
-    consist
-    rampant
-    basin
-    holiday
-    seat
-    savory
-    unnatural
-    big
-    juggle
-    disagree
-    distinct
-    hallowed
-    agreement
-    plan
-    force
-    roll
-    tub
-    gather
-    wilderness
-    choke
-    typical
-    control
-    barbarous
-    explain
-    stranger
-    panoramic
-    capable
-    misty
-    eminent
-    observant
-    annoying
-    superficial
-    appreciate
-    overrated
-    grass
-    songs
-    bat
-    air
-    enchanting
-    chicken
-    abiding
-    locket
-    friendly
-    grouchy
-    peace
-    tense
-    hulking
-    ambitious
-    property
-    grip
-    military
-    zoo
-    phone
-    grandiose
-    race
-    entertaining
-    knit
-    discussion
-    sturdy
-    top
-    chilly
-    male
-    mountain
-    tall
-    faithful
-    little
-    collect
-    song
-    flood
-    smell
-    kittens
-    smooth
-    thankful
-    happen
-    colossal
-    stocking
-    whistle
-    scissors
-    add
-    glow
-    violent
-    announce
-    sneeze
-    disagreeable
-    kill
-    greet
-    clumsy
-    tangy
-    foamy
-    super
-    angry
-    sister
-    pencil
-    compare
-    pointless
-    unsuitable
-    connect
-    vest
-    afternoon
-    push
-    sand
-    please
-    quiet
-    argue
-    assorted
-    walk
-    bright
-    harmonious
-    dear
-    return
-    temper
-    achiever
-    ahead
-    surround
-    copper
-    fetch
-    nondescript
-    woozy
-    educated
-    kindly
-    clever
-    card
-    screeching
-    spiritual
-    care
-    succinct
-    hover
-    dizzy
-    nauseating
-    snake
-    star
-    angle
-    badge
-    shallow
-    decay
-    drag
-    hesitant
-    nippy
-    farm
-    connection
-    wish
-    uninterested
-    cluttered
-    truthful
-    punishment
-    piquant
-    use
-    dapper
-    noxious
-    advise
-    store
-    cheese
-    lethal
-    steady
-    plastic
-    defiant
-    apparatus
-    previous
-    ring
-    flash
-    business
-    cart
-    confuse
-    prick
-    accessible
-    null
-    distance
-    rich
-    rightful
-    fireman
-    sincere
-    adhesive
-    wasteful
-    attract
-    calculating
-    mint
-    spectacular
-    jellyfish
-    aromatic
-    gifted
-    twist
-    gleaming
-    exercise
-    majestic
-    scold
-    brainy
-    trees
-    trade
-    lie
-    instrument
-    rebel
-    jump
-    railway
-    park
-    vessel
-    precede
-    best
-    battle
-    needle
-    appliance
-    train
-    ripe
-    empty
-    stew
-    jar
-    hill
-    aboard
-    doubt
-    jealous
-    rest
-    wobble
-    sofa
-    shake
-    vegetable
-    hall
-    pleasant
-    sock
-    terrible
-    drunk
-    industrious
-    leather
-    coach
-    breath
-    cruel
-    hang
-    dislike
-    spray
-    need
-    activity
-    scarf
-    material
-    berry
-    hateful
-    splendid
-    measly
-    zoom
-    spoil
-    full
-    frequent
-    heat
-    nine
-    pets
-    quince
-    incredible
-    innocent
-    sable
-    giants
-    overjoyed
-    safe
-    curve
-    unaccountable
-    trick
-    good
-    vase
-    wistful
-    pricey
-    ablaze
-    boundless
-    clap
-    likeable
-    accurate
-    undesirable
-    unknown
-    cloth
-    crowd
-    pinch
-    acidic
-    close
-    helpless
-    taboo
-    bedroom
-    excited
-    stream
-    fearless
-    sky
-    scarce
-    robin
-    yielding
-    bewildered
-    descriptive
-    animated
-    psychedelic
-    account
-    zonked
-    pick
-    legs
-    mammoth
-    idiotic
-    preserve
-    nice
-    cumbersome
-    ordinary
-    wretched
-    mate
-    billowy
-    double
-    march
-    visitor
-    cowardly
-    scintillating
-    profuse
-    writer
-    admire
-    whimsical
-    expansion
-    pen
-    chase
-    calculator
-    superb
-    stain
-    step
-    creator
-    thinkable
-    halting
-    ajar
-    common
-    ultra
-    government
-    hope
-    bridge
-    hilarious
-    lame
-    imperfect
-    pedal
-    decision
-    wail
-    nostalgic
-    normal
-    first
-    motion
-    wide-eyed
-    moan
-    rain
-    order
-    decorate
-    late
-    warm
-    creepy
-    repulsive
-    red
-    afterthought
-    quixotic
-    dependent
-    peep
-    cake
-    meat
-    wall
-    evanescent
-    ghost
-    comb
-    thunder
-    icicle
-    fabulous
-    disgusted
-    lumpy
-    replace
-    bee
-    brief
-    iron
-    servant
-    arrange
-    stupid
-    fasten
-    acrid
-    analyze
-    subdued
-    string
-    satisfy
-    umbrella
-    cook
-    pipe
-    bury
-    trucks
-    small
-    marvelous
-    rustic
-    beef
-    lace
-    filthy
-    grandfather
-    women
-    addicted
-    repair
-    cup
-    trains
-    ignorant
-    closed
-    dusty
-    heap
-    vague
-    pollution
-    explode
-    school
-    boundary
-    cattle
-    loving
-    valuable
-    risk
-    beginner
-    dolls
-    burst
-    realize
-    grease
-    concern
-    fruit
-    saw
-    jumbled
-    bruise
-    keen
-    verse
-    productive
-    space
-    wrathful
-    blot
-    alluring
-    sort
-    doll
-    chief
-    physical
-    futuristic
-    sleet
-    nifty
-    prefer
-    same
-    soup
-    therapeutic
-    joyous
-    insurance
-    home
-    representative
-    aboriginal
-    apologise
-    abashed
-    unite
-    arm
-    abundant
-    grain
-    place
-    zesty
-    deadpan
-    animal
-    flimsy
-    improve
-    plain
-    deranged
-    attraction
-    supreme
-    laugh
-    vigorous
-    rude
-    reach
-    long
-    bite-sized
-    hard-to-find
-    instruct
-    money
-    toe
-    direful
-    innate
-    groan
-    expert
-    frighten
-    unfasten
-    comfortable
-    horrible
-    plane
-    coal
-    bounce
-    work
-    car
-    bitter
-    solid
-    forgetful
-    jobless
-    haircut
-    enter
-    groovy
-    blink
-    illustrious
-    cave
-    rock
-    fixed
-    flowers
-    death
-    pot
-    stupendous
-    haunt
-    funny
-    borrow
-    cool
-    title
-    delicate
-    seed
-    unhealthy
-    prevent
-    humorous
-    gamy
-    limping
-    reminiscent
-    flag
-    teeny
-    quaint
-    wet
-    deserve
-    neck
-    auspicious
-    rely
-    crayon
-    monkey
-    crate
-    earthy
-    troubled
-    slave
-    beam
-    knowledge
-    soda
-    spooky
-    talented
-    plants
-    ragged
-    envious
-    argument
-    stage
-    receipt
-    tail
-    tearful
-    bolt
-    shaky
-    deer
-    poor
-    tongue
-    acoustics
-    self
-    outstanding
-    smoggy
-    seashore
-    true
-    aggressive
-    stingy
-    approval
-    absent
-    observation
-    shoe
-    unable
-    extra-large
-    blue-eyed
-    incompetent
-    soothe
-    cherry
-    uneven
-    dashing
-    madly
-    clam
-    thick
-    neat
-    guttural
-    sparkling
-    nod
-    upbeat
-    irritating
-    efficacious
-    quack
-    furniture
-    combative
-    cream
-    skip
-    mailbox
-    zippy
-    befitting
-    relieved
-    lamp
-    throne
-    welcome
-    influence
-    substantial
-    committee
-    cynical
-    boil
-    tempt
-    quickest
-    magnificent
-    wealth
-    mourn
-    high-pitched
-    book
-    town
-    fallacious
-    needy
-    spotted
-    nest
-    fine
-    spell
-    high
-    idea
-    snails
-    fail
-    sad
-    bike
-    delightful
-    sound
-    scatter
-    tasty
-    flashy
-    hysterical
-    arrogant
-    strengthen
-    check
-    orange
-    squalid
-    meaty
-    ashamed
-    scratch
-    employ
-    petite
-    cars
-    guitar
-    sack
-    tug
-    butter
-    legal
-    knowing
-    machine
-    aunt
-    change
-    roomy
-    toy
-    bone
-    wheel
-    country
-    float
-    habitual
-    condemned
-    bake
-    ruddy
-    boiling
-    skirt
-    tested
-    liquid
-    graceful
-    bouncy
-    juicy
-    discover
-    rice
-    half
-    receptive
-    pump
-    houses
-    purpose
-    spiky
-    fog
-    fuel
-    silk
-    permit
-    obtainable
-    romantic
-    copy
-    glass
-    obey
-    scattered
-    strong
-tank""".replace('   ', '').split('\n')
+acid
+elite
+yoke
+truculent
+mute
+husky
+interesting
+stem
+detail
+screw
+rhythm
+mug
+wonder
+believe
+watch
+religion
+potato
+crash
+show
+third
+zip
+fax
+shrug
+puffy
+sun
+event
+camera
+tap
+woebegone
+abject
+limit
+rings
+feeling
+unused
+visit
+canvas
+dangerous
+spurious
+year
+nonchalant
+momentous
+payment
+subtract
+useful
+thread
+divergent
+obeisant
+whip
+ill
+tax
+pleasure
+match
+longing
+incandescent
+unwieldy
+hair
+clean
+tedious
+pull
+brake
+painstaking
+grab
+end
+learned
+apparel
+thaw
+unbiased
+communicate
+form
+aback
+secretary
+reign
+wrist
+want
+deserted
+wax
+used
+exclusive
+nonstop
+charge
+foolish
+zealous
+ruthless
+decorous
+birth
+equable
+present
+babies
+blushing
+spring
+imminent
+label
+magical
+bow
+muscle
+steadfast
+rejoice
+complain
+object
+helpful
+milky
+girl
+miss
+dog
+loose
+pretty
+grate
+pan
+hot
+yell
+tumble
+exciting
+medical
+swing
+ruin
+invention
+grey
+boy
+craven
+meeting
+hurried
+prose
+swift
+team
+kindhearted
+vast
+flower
+adjoining
+request
+pie
+zephyr
+abnormal
+territory
+judicious
+raspy
+damp
+pigs
+moon
+abaft
+silent
+telling
+godly
+books
+nail
+abusive
+murder
+children
+multiply
+produce
+run
+rabbits
+nerve
+teeny-tiny
+love
+sleep
+fluttering
+fit
+magic
+mindless
+base
+obtain
+discovery
+embarrass
+ratty
+sweater
+luxuriant
+testy
+glib
+hat
+jittery
+cagey
+questionable
+oceanic
+highfalutin
+bikes
+lick
+count
+thought
+magenta
+blind
+debt
+veil
+statement
+jeans
+colorful
+four
+worthless
+daughter
+salty
+whirl
+friend
+permissible
+rail
+impulse
+jelly
+gruesome
+fat
+encourage
+trace
+blush
+rainy
+club
+inconclusive
+answer
+teaching
+telephone
+camp
+lettuce
+way
+curly
+suggest
+bed
+boat
+waiting
+tooth
+cakes
+one
+parsimonious
+mom
+direction
+scared
+party
+stamp
+sweltering
+tow
+daffy
+hospital
+spotty
+relation
+silky
+young
+governor
+roasted
+anxious
+white
+radiate
+rinse
+well-to-do
+army
+two
+righteous
+abounding
+volatile
+wonderful
+wrap
+paint
+moldy
+include
+large
+bulb
+trousers
+meal
+geese
+adjustment
+cow
+spiteful
+drum
+stretch
+memory
+strange
+amused
+violet
+lunch
+extra-small
+muddle
+outrageous
+glorious
+supply
+buzz
+instinctive
+weak
+bump
+chess
+sassy
+refuse
+paste
+drain
+domineering
+cub
+cap
+rot
+flight
+amusement
+unsightly
+unbecoming
+adventurous
+treatment
+jog
+greasy
+shivering
+cloistered
+whispering
+dispensable
+sparkle
+eye
+lumber
+voracious
+pink
+kind
+nutty
+noisy
+materialistic
+humdrum
+glamorous
+face
+wooden
+cloudy
+edge
+encouraging
+noise
+knowledgeable
+sense
+note
+hypnotic
+blade
+tin
+channel
+trust
+birds
+ambiguous
+curtain
+toothbrush
+turkey
+hug
+plucky
+modern
+yard
+dinner
+arrive
+suit
+disillusioned
+bottle
+dark
+pig
+claim
+absurd
+food
+responsible
+staking
+yarn
+wool
+twig
+political
+listen
+disastrous
+decisive
+elfin
+hop
+spare
+royal
+irate
+tricky
+grumpy
+puzzling
+unarmed
+obedient
+nut
+tickle
+suspend
+shrill
+friction
+settle
+chalk
+frightened
+old-fashioned
+unequaled
+cat
+baseball
+ancient
+flagrant
+pocket
+tiny
+industry
+boring
+wry
+wood
+elbow
+rescue
+protective
+bubble
+messy
+writing
+difficult
+womanly
+scrub
+challenge
+obsequious
+remind
+behave
+delirious
+bang
+wire
+lacking
+spark
+language
+driving
+wind
+depressed
+puzzled
+squeak
+plough
+callous
+right
+grubby
+quirky
+sticky
+respect
+threatening
+afford
+succeed
+feeble
+flame
+rhetorical
+roof
+thrill
+class
+front
+obscene
+transport
+frail
+exuberant
+plate
+bucket
+intend
+alive
+flowery
+remove
+hushed
+divide
+dogs
+floor
+light
+ten
+tenuous
+oval
+color
+carriage
+uncle
+redundant
+adamant
+gusty
+shocking
+basket
+amuse
+bashful
+amuck
+injure
+standing
+fair
+balance
+spill
+rotten
+silly
+tie
+finger
+agree
+cuddly
+part
+attack
+drab
+rainstorm
+mellow
+trot
+irritate
+disappear
+grape
+greedy
+move
+stroke
+unequal
+dream
+relax
+astonishing
+sheep
+cemetery
+ants
+square
+offbeat
+rub
+caring
+fast
+tiger
+boorish
+hard
+obese
+distribution
+carry
+smash
+ugliest
+snore
+glossy
+hum
+stiff
+worm
+soap
+weather
+numerous
+mixed
+talk
+great
+offer
+early
+accidental
+coil
+knot
+abandoned
+try
+general
+mask
+paddle
+earthquake
+avoid
+sneaky
+impossible
+robust
+salt
+letters
+labored
+pack
+stereotyped
+competition
+x-ray
+branch
+reduce
+strip
+fretful
+bumpy
+stimulating
+brush
+aloof
+hideous
+cobweb
+well-off
+adaptable
+delicious
+experience
+open
+mass
+grandmother
+wide
+verdant
+income
+ignore
+tease
+elated
+tender
+jail
+division
+cross
+sprout
+preach
+green
+mess up
+engine
+steep
+thirsty
+sticks
+drink
+bead
+confused
+garrulous
+behavior
+sour
+suggestion
+nutritious
+neighborly
+road
+night
+error
+lean
+trouble
+price
+riddle
+humor
+group
+tidy
+excellent
+sick
+expand
+library
+coast
+separate
+raise
+clover
+happy
+recognise
+ray
+appear
+rush
+squeamish
+cheer
+frantic
+scandalous
+serve
+deep
+serious
+middle
+dinosaurs
+building
+dull
+chickens
+sign
+periodic
+eager
+dysfunctional
+bleach
+mighty
+malicious
+curl
+profit
+moaning
+aware
+found
+range
+tawdry
+ski
+unit
+release
+meek
+blue
+exotic
+paltry
+oven
+vivacious
+tomatoes
+trashy
+program
+letter
+increase
+lip
+donkey
+concentrate
+enthusiastic
+brother
+measure
+straight
+even
+well-groomed
+desire
+furry
+develop
+hapless
+draconian
+men
+pray
+available
+current
+perfect
+smart
+spotless
+wild
+mix
+courageous
+spoon
+regret
+terrific
+reflective
+bell
+gainful
+follow
+clammy
+peck
+crib
+tick
+fade
+toys
+colour
+pour
+voice
+awesome
+temporary
+bent
+kick
+new
+successful
+striped
+impolite
+fairies
+psychotic
+natural
+enormous
+rose
+structure
+report
+maddening
+flat
+mark
+sedate
+sigh
+aquatic
+fish
+dirty
+dry
+shop
+bless
+sip
+look
+naughty
+reply
+spicy
+dime
+pastoral
+awake
+kaput
+snail
+license
+mean
+back
+finicky
+doubtful
+mend
+agonizing
+tart
+adorable
+side
+deeply
+axiomatic
+racial
+rod
+gaping
+placid
+loaf
+science
+stick
+gaudy
+rabid
+tight
+shock
+slap
+prickly
+unruly
+stale
+plant
+melt
+scorch
+harm
+cooperative
+mist
+squeeze
+wait
+poke
+thing
+squirrel
+dance
+hospitable
+brass
+heal
+cough
+poised
+handle
+chivalrous
+type
+recondite
+carve
+calculate
+scream
+hate
+volleyball
+hanging
+chemical
+unkempt
+changeable
+bloody
+page
+amount
+ice
+possess
+earsplitting
+overwrought
+promise
+cycle
+island
+minute
+abhorrent
+soak
+sniff
+hammer
+stay
+statuesque
+cheerful
+murky
+scarecrow
+possible
+lively
+bells
+advice
+continue
+growth
+house
+room
+bored
+hose
+harmony
+horses
+boast
+functional
+tendency
+parched
+throat
+overflow
+internal
+act
+plug
+bizarre
+pancake
+handsomely
+cooing
+wrong
+yak
+sugar
+penitent
+concerned
+summer
+icky
+future
+sore
+gray
+laughable
+kitty
+beautiful
+dam
+occur
+fancy
+egg
+voyage
+illegal
+round
+lucky
+marry
+caption
+man
+tasteful
+excuse
+flippant
+station
+introduce
+afraid
+invite
+disturbed
+volcano
+polite
+cactus
+mature
+shiver
+chance
+rhyme
+tire
+dirt
+admit
+lovely
+knotty
+fool
+whole
+help
+value
+fierce
+gate
+addition
+minister
+shy
+credit
+system
+key
+wreck
+obsolete
+marble
+ocean
+pear
+tramp
+wing
+describe
+north
+hour
+expensive
+scribble
+bathe
+tip
+witty
+lamentable
+far
+overt
+cure
+ready
+stitch
+sudden
+cows
+morning
+complex
+wash
+ad hoc
+reading
+bird
+invent
+honorable
+rob
+recess
+chop
+pin
+cultured
+worried
+five
+famous
+lowly
+quizzical
+ludicrous
+muddled
+shoes
+victorious
+cause
+nimble
+fluffy
+sophisticated
+poison
+next
+loutish
+switch
+gigantic
+gabby
+lock
+grateful
+yummy
+debonair
+glistening
+stir
+dock
+fence
+tacky
+inform
+repeat
+venomous
+punish
+receive
+immense
+stuff
+aberrant
+disgusting
+ugly
+pause
+quilt
+soggy
+important
+hole
+fresh
+vein
+line
+like
+imported
+wanting
+pizzas
+woman
+narrow
+soft
+cellar
+shirt
+position
+spiders
+day
+makeshift
+crabby
+symptomatic
+defective
+play
+belong
+squash
+punch
+actually
+decide
+sponge
+untidy
+teeth
+glove
+thin
+crowded
+pass
+acoustic
+story
+carpenter
+past
+ubiquitous
+scrape
+fork
+popcorn
+chubby
+itch
+lunchroom
+jam
+utopian
+purring
+corn
+slope
+support
+shaggy
+cheat
+impartial
+pumped
+tremble
+approve
+skin
+familiar
+upset
+allow
+stormy
+few
+reward
+conscious
+gaze
+route
+melodic
+stare
+huge
+weary
+wander
+efficient
+crack
+hand
+arithmetic
+ill-informed
+lake
+infamous
+festive
+planes
+jolly
+provide
+workable
+travel
+flock
+brown
+sloppy
+hydrant
+bustling
+perpetual
+arrest
+post
+snotty
+earn
+ritzy
+rifle
+macabre
+puncture
+frame
+spade
+tired
+pickle
+authority
+uptight
+second-hand
+winter
+juvenile
+hungry
+imagine
+jumpy
+versed
+hissing
+miscreant
+belligerent
+dare
+number
+purple
+inexpensive
+rural
+careless
+cracker
+suck
+last
+clip
+lazy
+prepare
+treat
+faint
+duck
+toothpaste
+elastic
+married
+cushion
+impress
+vacuous
+capricious
+birthday
+dust
+mice
+wandering
+airplane
+warlike
+sidewalk
+lighten
+degree
+flaky
+daily
+agreeable
+special
+matter
+join
+easy
+flawless
+pet
+sheet
+alert
+record
+unpack
+discreet
+celery
+save
+eight
+vulgar
+ask
+careful
+giddy
+rare
+kiss
+defeated
+detailed
+grin
+acceptable
+escape
+flow
+seal
+damage
+frog
+flap
+endurable
+certain
+texture
+example
+question
+historical
+guiltless
+fragile
+faded
+crush
+sulky
+secret
+long-term
+rule
+bear
+slim
+kneel
+cannon
+merciful
+delay
+elderly
+parallel
+private
+curved
+amazing
+war
+linen
+protect
+wink
+stomach
+proud
+attach
+shade
+whine
+rough
+spot
+thank
+remember
+anger
+river
+devilish
+breakable
+burn
+snobbish
+guide
+moor
+van
+fall
+marked
+touch
+nosy
+pushy
+wicked
+sin
+ball
+rate
+able
+disapprove
+contain
+understood
+test
+giant
+voiceless
+fang
+knife
+selfish
+pies
+broad
+spiffy
+society
+peaceful
+comparison
+thumb
+worry
+fly
+remarkable
+slip
+reflect
+notebook
+scent
+swanky
+entertain
+own
+time
+development
+extend
+ground
+field
+downtown
+knock
+partner
+nasty
+obnoxious
+compete
+demonic
+consider
+useless
+hollow
+elegant
+memorize
+oil
+creature
+subsequent
+public
+satisfying
+mind
+organic
+quiver
+tree
+precious
+gold
+miniature
+rat
+strap
+design
+alcoholic
+thoughtful
+fact
+bore
+mere
+advertisement
+youthful
+unadvised
+surprise
+brash
+itchy
+harbor
+homeless
+sea
+examine
+education
+near
+vengeful
+brick
+offend
+dead
+land
+film
+blow
+effect
+squeal
+confess
+chew
+deceive
+resonant
+silver
+berserk
+shiny
+mushy
+tasteless
+notice
+cent
+thoughtless
+exchange
+somber
+sharp
+snakes
+exist
+onerous
+annoyed
+real
+hunt
+embarrassed
+cable
+terrify
+print
+handsome
+juice
+wise
+insect
+lyrical
+suffer
+cherries
+waves
+unique
+alarm
+toad
+basketball
+mitten
+handy
+shelter
+board
+educate
+theory
+circle
+frightening
+tremendous
+history
+melted
+curious
+motionless
+kettle
+insidious
+erect
+yellow
+beds
+cheap
+quartz
+can
+uppity
+wipe
+baby
+root
+market
+scale
+sleepy
+lewd
+wiggly
+average
+crazy
+eggs
+heavy
+inject
+powder
+wave
+dynamic
+box
+window
+damaging
+consist
+rampant
+basin
+holiday
+seat
+savory
+unnatural
+big
+juggle
+disagree
+distinct
+hallowed
+agreement
+plan
+force
+roll
+tub
+gather
+wilderness
+choke
+typical
+control
+barbarous
+explain
+stranger
+panoramic
+capable
+misty
+eminent
+observant
+annoying
+superficial
+appreciate
+overrated
+grass
+songs
+bat
+air
+enchanting
+chicken
+abiding
+locket
+friendly
+grouchy
+peace
+tense
+hulking
+ambitious
+property
+grip
+military
+zoo
+phone
+grandiose
+race
+entertaining
+knit
+discussion
+sturdy
+top
+chilly
+male
+mountain
+tall
+faithful
+little
+collect
+song
+flood
+smell
+kittens
+smooth
+thankful
+happen
+colossal
+stocking
+whistle
+scissors
+add
+glow
+violent
+announce
+sneeze
+disagreeable
+kill
+greet
+clumsy
+tangy
+foamy
+super
+angry
+sister
+pencil
+compare
+pointless
+unsuitable
+connect
+vest
+afternoon
+push
+sand
+please
+quiet
+argue
+assorted
+walk
+bright
+harmonious
+dear
+return
+temper
+achiever
+ahead
+surround
+copper
+fetch
+nondescript
+woozy
+educated
+kindly
+clever
+card
+screeching
+spiritual
+care
+succinct
+hover
+dizzy
+nauseating
+snake
+star
+angle
+badge
+shallow
+decay
+drag
+hesitant
+nippy
+farm
+connection
+wish
+uninterested
+cluttered
+truthful
+punishment
+piquant
+use
+dapper
+noxious
+advise
+store
+cheese
+lethal
+steady
+plastic
+defiant
+apparatus
+previous
+ring
+flash
+business
+cart
+confuse
+prick
+accessible
+null
+distance
+rich
+rightful
+fireman
+sincere
+adhesive
+wasteful
+attract
+calculating
+mint
+spectacular
+jellyfish
+aromatic
+gifted
+twist
+gleaming
+exercise
+majestic
+scold
+brainy
+trees
+trade
+lie
+instrument
+rebel
+jump
+railway
+park
+vessel
+precede
+best
+battle
+needle
+appliance
+train
+ripe
+empty
+stew
+jar
+hill
+aboard
+doubt
+jealous
+rest
+wobble
+sofa
+shake
+vegetable
+hall
+pleasant
+sock
+terrible
+drunk
+industrious
+leather
+coach
+breath
+cruel
+hang
+dislike
+spray
+need
+activity
+scarf
+material
+berry
+hateful
+splendid
+measly
+zoom
+spoil
+full
+frequent
+heat
+nine
+pets
+quince
+incredible
+innocent
+sable
+giants
+overjoyed
+safe
+curve
+unaccountable
+trick
+good
+vase
+wistful
+pricey
+ablaze
+boundless
+clap
+likeable
+accurate
+undesirable
+unknown
+cloth
+crowd
+pinch
+acidic
+close
+helpless
+taboo
+bedroom
+excited
+stream
+fearless
+sky
+scarce
+robin
+yielding
+bewildered
+descriptive
+animated
+psychedelic
+account
+zonked
+pick
+legs
+mammoth
+idiotic
+preserve
+nice
+cumbersome
+ordinary
+wretched
+mate
+billowy
+double
+march
+visitor
+cowardly
+scintillating
+profuse
+writer
+admire
+whimsical
+expansion
+pen
+chase
+calculator
+superb
+stain
+step
+creator
+thinkable
+halting
+ajar
+common
+ultra
+government
+hope
+bridge
+hilarious
+lame
+imperfect
+pedal
+decision
+wail
+nostalgic
+normal
+first
+motion
+wide-eyed
+moan
+rain
+order
+decorate
+late
+warm
+creepy
+repulsive
+red
+afterthought
+quixotic
+dependent
+peep
+cake
+meat
+wall
+evanescent
+ghost
+comb
+thunder
+icicle
+fabulous
+disgusted
+lumpy
+replace
+bee
+brief
+iron
+servant
+arrange
+stupid
+fasten
+acrid
+analyze
+subdued
+string
+satisfy
+umbrella
+cook
+pipe
+bury
+trucks
+small
+marvelous
+rustic
+beef
+lace
+filthy
+grandfather
+women
+addicted
+repair
+cup
+trains
+ignorant
+closed
+dusty
+heap
+vague
+pollution
+explode
+school
+boundary
+cattle
+loving
+valuable
+risk
+beginner
+dolls
+burst
+realize
+grease
+concern
+fruit
+saw
+jumbled
+bruise
+keen
+verse
+productive
+space
+wrathful
+blot
+alluring
+sort
+doll
+chief
+physical
+futuristic
+sleet
+nifty
+prefer
+same
+soup
+therapeutic
+joyous
+insurance
+home
+representative
+aboriginal
+apologise
+abashed
+unite
+arm
+abundant
+grain
+place
+zesty
+deadpan
+animal
+flimsy
+improve
+plain
+deranged
+attraction
+supreme
+laugh
+vigorous
+rude
+reach
+long
+bite-sized
+hard-to-find
+instruct
+money
+toe
+direful
+innate
+groan
+expert
+frighten
+unfasten
+comfortable
+horrible
+plane
+coal
+bounce
+work
+car
+bitter
+solid
+forgetful
+jobless
+haircut
+enter
+groovy
+blink
+illustrious
+cave
+rock
+fixed
+flowers
+death
+pot
+stupendous
+haunt
+funny
+borrow
+cool
+title
+delicate
+seed
+unhealthy
+prevent
+humorous
+gamy
+limping
+reminiscent
+flag
+teeny
+quaint
+wet
+deserve
+neck
+auspicious
+rely
+crayon
+monkey
+crate
+earthy
+troubled
+slave
+beam
+knowledge
+soda
+spooky
+talented
+plants
+ragged
+envious
+argument
+stage
+receipt
+tail
+tearful
+bolt
+shaky
+deer
+poor
+tongue
+acoustics
+self
+outstanding
+smoggy
+seashore
+true
+aggressive
+stingy
+approval
+absent
+observation
+shoe
+unable
+extra-large
+blue-eyed
+incompetent
+soothe
+cherry
+uneven
+dashing
+madly
+clam
+thick
+neat
+guttural
+sparkling
+nod
+upbeat
+irritating
+efficacious
+quack
+furniture
+combative
+cream
+skip
+mailbox
+zippy
+befitting
+relieved
+lamp
+throne
+welcome
+influence
+substantial
+committee
+cynical
+boil
+tempt
+quickest
+magnificent
+wealth
+mourn
+high-pitched
+book
+town
+fallacious
+needy
+spotted
+nest
+fine
+spell
+high
+idea
+snails
+fail
+sad
+bike
+delightful
+sound
+scatter
+tasty
+flashy
+hysterical
+arrogant
+strengthen
+check
+orange
+squalid
+meaty
+ashamed
+scratch
+employ
+petite
+cars
+guitar
+sack
+tug
+butter
+legal
+knowing
+machine
+aunt
+change
+roomy
+toy
+bone
+wheel
+country
+float
+habitual
+condemned
+bake
+ruddy
+boiling
+skirt
+tested
+liquid
+graceful
+bouncy
+juicy
+discover
+rice
+half
+receptive
+pump
+houses
+purpose
+spiky
+fog
+fuel
+silk
+permit
+obtainable
+romantic
+copy
+glass
+obey
+scattered
+strong
+tank""".split('\n')
 
 # Create the SQL connection to pets_db as specified in your secrets file
 engine = create_engine("sqlite:///highScores.db")
@@ -2075,12 +2076,12 @@ conn.execute(text('''
 conn.commit()
 
 
-def pick_weighted_random_word(all_words, picked_words):
+def pick_weighted_random_word(all_words, picked_words, previousWord = False):
     # Define the higher weight for picked words
-    higher_weight = 35
+    higher_weight = 45
     
     # Create a dictionary for word weights
-    word_weights = {word: 1 for word in all_words}
+    word_weights = {word: 1 for word in all_words if word != previousWord}
     
     # Increase the weight for picked words
     for word in picked_words:
@@ -2092,7 +2093,6 @@ def pick_weighted_random_word(all_words, picked_words):
     
     # Use random.choices to pick a word based on the weights
     return random.choices(words, weights=weights, k=1)[0]
-
 
 # Initialize session state for form toggle if it's not already set
 if 'score' not in st.session_state:
@@ -2110,6 +2110,8 @@ if 'seenList' not in st.session_state:
 if 'actualWord' not in st.session_state:
     st.session_state.actualWord = pick_weighted_random_word(wordList, st.session_state.seenList)
 
+if 'previousWord' not in st.session_state:
+    st.session_state.previousWord = st.session_state.actualWord
 
 def gameOver():
     with st.container():
@@ -2180,7 +2182,7 @@ def main():
                         if st.session_state.actualWord not in st.session_state.seenList:
                             st.session_state.seenList.append(st.session_state.actualWord)
 
-                        st.session_state.actualWord = pick_weighted_random_word(wordList, st.session_state.seenList)
+                        st.session_state.actualWord = pick_weighted_random_word(wordList, st.session_state.seenList, st.session_state.previousWord)
                         st.rerun()
                 with z2:
                     if st.button("NEW"):
@@ -2195,7 +2197,7 @@ def main():
                         if st.session_state.actualWord not in st.session_state.seenList:
                             st.session_state.seenList.append(st.session_state.actualWord)
 
-                        st.session_state.actualWord = pick_weighted_random_word(wordList, st.session_state.seenList)
+                        st.session_state.actualWord = pick_weighted_random_word(wordList, st.session_state.seenList, st.session_state.previousWord)
                         st.rerun()
         
 
